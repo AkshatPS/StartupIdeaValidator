@@ -1,0 +1,151 @@
+/* Color Palette as CSS Variables */
+:root {
+  --dominant-color: #222831;
+  --secondary-color: #393E46;
+  --accent-color: #948979;
+  --neutral-color: #DFD0B8;
+}
+
+/* General Page Styles */
+.page {
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--dominant-color);
+  color: var(--neutral-color);
+  text-align: center;
+}
+
+.section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-tagline {
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
+  font-weight: bold;
+  max-width: 800px;
+  line-height: 1.2;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  background-color: var(--secondary-color);
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.step {
+  flex: 1;
+  max-width: 300px;
+  min-width: 250px;
+}
+
+.step-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.step-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--neutral-color);
+}
+
+/* Features Section */
+.features-section {
+  background-color: var(--dominant-color);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: var(--secondary-color);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-color);
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+/* Testimonials / Demo Section */
+.testimonials-section {
+  background-color: var(--secondary-color);
+}
+
+.demo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: 10px;
+  border: 2px solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-color);
+  font-size: 1.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 80px 20px;
+}
+
+.cta-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--dominant-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}
