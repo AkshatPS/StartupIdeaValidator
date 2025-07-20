@@ -1,4 +1,4 @@
-/* Using the same color palette from the landing page */
+/* Using the same color palette */
 :root {
   --dominant-color: #222831;
   --secondary-color: #393E46;
@@ -6,8 +6,8 @@
   --neutral-color: #DFD0B8;
 }
 
-/* Main Navbar Styling */
-.landing-navbar {
+/* Main Navbar Styling - class name changed to auth-navbar */
+.auth-navbar {
   background-color: var(--secondary-color);
   height: 80px;
   display: flex;
@@ -107,7 +107,7 @@
 
 /* Hamburger Menu Icon */
 .menu-icon {
-  display: none; /* Hidden by default */
+  display: none;
   cursor: pointer;
   flex-direction: column;
   justify-content: space-around;
@@ -123,7 +123,6 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* Hamburger animation */
 .menu-icon .bar.open:nth-child(1) {
     transform: translateY(10.5px) rotate(45deg);
 }
@@ -141,17 +140,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 80px); /* Full height minus navbar */
+    height: calc(100vh - 80px);
     position: absolute;
     top: 80px;
-    left: -100%; /* Hidden off-screen */
+    left: -100%;
     opacity: 1;
     transition: all 0.4s ease;
     background: var(--secondary-color);
   }
 
   .nav-menu.active {
-    left: 0; /* Slides in */
+    left: 0;
     opacity: 1;
     z-index: 1;
   }
@@ -181,7 +180,7 @@
   }
 
   .menu-icon {
-    display: flex; /* Show hamburger icon */
+    display: flex;
     align-self: center;
   }
 }
