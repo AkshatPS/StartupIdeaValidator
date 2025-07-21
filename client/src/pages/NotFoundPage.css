@@ -35,7 +35,7 @@
   min-height: 100vh;
   background-color: var(--dominant-color);
   color: var(--neutral-color);
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   text-align: center;
   padding: 20px;
   overflow: hidden;

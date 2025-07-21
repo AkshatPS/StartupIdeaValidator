@@ -16,7 +16,7 @@
   background-color: var(--dominant-color);
   min-height: 100vh;
   padding-bottom: 40px;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .report-page-container {
