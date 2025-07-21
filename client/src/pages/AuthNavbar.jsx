@@ -21,7 +21,7 @@ const AuthNavbar = () => {
       <div className="navbar-container">
         {/* Logo / Brand Name - Links to Landing Page */}
         <a href="/" className="navbar-logo" onClick={(e) => handleNavigate(e, '/')}>
-          IdeaValidateAI
+          Startalyze
         </a>
 
         {/* Hamburger Menu Icon for Mobile */}

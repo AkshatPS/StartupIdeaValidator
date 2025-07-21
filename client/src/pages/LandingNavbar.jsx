@@ -41,7 +41,7 @@ const LandingNavbar = () => {
       <div className="navbar-container">
         {/* Logo / Brand Name */}
         <a href="#" className="navbar-logo" onClick={handleHomeClick}>
-          IdeaValidateAI
+          Startalyze
         </a>
 
         {/* Hamburger Menu Icon for Mobile */}

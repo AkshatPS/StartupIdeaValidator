@@ -1,0 +1,165 @@
+/* Using the same color palette for consistency */
+:root {
+  --dominant-color: #222831;
+  --secondary-color: #393E46;
+  --accent-color: #948979;
+  --neutral-color: #DFD0B8;
+  --border-color: #4a4e57;
+  --error-color: #e74c3c;
+}
+
+.form-page-wrapper {
+  background-color: var(--dominant-color);
+  color: var(--neutral-color);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  color: #b0b3b8;
+  font-size: 1.1rem;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.required-star {
+    color: var(--accent-color);
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--dominant-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--neutral-color);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(148, 137, 121, 0.3);
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 30px;
+}
+
+/* Reusing button styles from dashboard.css */
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+.btn-accent {
+  background-color: var(--accent-color);
+  color: var(--dominant-color);
+}
+.btn-accent:hover {
+  background-color: #a99e8e;
+}
+.btn-secondary {
+  background-color: #555;
+  color: var(--neutral-color);
+}
+.btn-secondary:hover {
+    background-color: #666;
+}
+
+.error-message {
+  color: var(--error-color);
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid var(--error-color);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 768px) {
+    .form-container {
+        padding: 25px;
+        margin: 20px;
+    }
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    .btn {
+        width: 100%;
+    }
+}

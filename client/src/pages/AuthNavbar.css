@@ -143,7 +143,7 @@
     height: calc(100vh - 80px);
     position: absolute;
     top: 80px;
-    left: -100%;
+    left: -120%;
     opacity: 1;
     transition: all 0.4s ease;
     background: var(--secondary-color);
