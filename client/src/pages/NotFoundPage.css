@@ -1,0 +1,112 @@
+/* Using the established color palette */
+:root {
+  --dominant-color: #222831;
+  --secondary-color: #393E46;
+  --accent-color: #948979;
+  --neutral-color: #DFD0B8;
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--dominant-color);
+  color: var(--neutral-color);
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.not-found-container {
+  max-width: 600px;
+}
+
+.status-code-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+}
+
+.status-code-404 {
+  font-size: clamp(8rem, 25vw, 15rem); /* Responsive font size */
+  font-weight: 700;
+  margin: 0;
+  color: var(--secondary-color);
+  text-shadow: 
+    -1px -1px 0 var(--border-color, #4a4e57),  
+     1px -1px 0 var(--border-color, #4a4e57),
+    -1px  1px 0 var(--border-color, #4a4e57),
+     1px  1px 0 var(--border-color, #4a4e57);
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(6rem, 20vw, 12rem);
+    height: clamp(6rem, 20vw, 12rem);
+}
+
+.compass-icon {
+    width: 100%;
+    height: 100%;
+    color: var(--accent-color);
+    animation: spin 30s linear infinite;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--neutral-color);
+}
+
+.error-description {
+  font-size: 1.1rem;
+  color: #b0b3b8;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.home-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--dominant-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 14px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.home-button:hover {
+  transform: translateY(-3px);
+  background-color: #a99e8e;
+}

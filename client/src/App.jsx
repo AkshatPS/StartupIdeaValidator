@@ -7,8 +7,7 @@ import NewIdeaForm from "./pages/NewIdeaForm";
 import ValidationPage from "./pages/ValidationPage";
 import ReportPage from "./pages/ReportPage";
 import ProfilePage from "./pages/ProfilePage";
-import ChatPage from "./pages/ChatPage";
-import AdminPage from "./pages/AdminPage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -22,9 +21,8 @@ function App() {
         <Route path="/new-idea" element={<NewIdeaForm />} />
         <Route path="/validate/:ideaId" element={<ValidationPage />} />
         <Route path="/report/:ideaId" element={<ReportPage />} />
-        <Route path="/chat/:ideaId" element={<ChatPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -47,12 +47,11 @@ const Navbar = () => {
 
                 {/* Right side: Main Nav, Profile, and Mobile Menu Icon */}
                 <div className="navbar-right">
-                    {/* Main navigation links are now here */}
                     <ul className="nav-menu-main">
                         <li><a href="/dashboard" className="nav-links">Dashboard</a></li>
-                        <li><a href="/validate" className="nav-links">Validate New Idea</a></li>
-                        <li><a href="/history" className="nav-links">History</a></li>
-                        {/* "Collaborate" button removed */}
+                        <li><a href="/new-idea" className="nav-links">Validate New Idea</a></li>
+                        {/* UPDATED: Link now points to the dashboard with a hash */}
+                        <li><a href="/dashboard#recent-validations-section" className="nav-links">History</a></li>
                     </ul>
 
                     <div className="profile-section" ref={profileRef}>
@@ -81,9 +80,9 @@ const Navbar = () => {
             {isMobileMenuOpen && (
                  <div className="mobile-menu">
                     <a href="/dashboard" className="mobile-nav-link">Dashboard</a>
-                    <a href="/validate" className="mobile-nav-link">Validate New Idea</a>
-                    <a href="/history" className="mobile-nav-link">History</a>
-                    {/* "Collaborate" button removed */}
+                    <a href="/new-idea" className="mobile-nav-link">Validate New Idea</a>
+                    {/* UPDATED: Link now points to the dashboard with a hash */}
+                    <a href="/dashboard#recent-validations-section" className="mobile-nav-link">History</a>
                     <div className="mobile-divider"></div>
                     <a href="/profile" className="mobile-nav-link">Profile</a>
                     <a href="/settings" className="mobile-nav-link">Settings</a>
