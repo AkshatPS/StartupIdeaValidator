@@ -119,12 +119,18 @@
     z-index: 1000;
 }
 
+/* Base style for both links and buttons in the dropdown */
 .dashboard-navbar .dropdown-item {
     display: block;
+    width: 100%;
     padding: 12px 15px;
     color: var(--neutral-color);
     text-decoration: none;
     font-size: 0.95rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
 }
 
 .dashboard-navbar .dropdown-item:hover {
@@ -137,10 +143,11 @@
     margin: 5px 0;
 }
 
-.dashboard-navbar .logout {
+/* Specific styling for the logout button */
+.dashboard-navbar .dropdown-item.logout {
     color: var(--danger-color);
 }
-.dashboard-navbar .logout:hover {
+.dashboard-navbar .dropdown-item.logout:hover {
     background-color: rgba(231, 76, 60, 0.1);
 }
 
@@ -205,6 +212,11 @@
     padding: 15px 30px;
     text-decoration: none;
     font-size: 1.1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
   }
   .dashboard-navbar .mobile-nav-link:hover {
       background-color: var(--dominant-color);
@@ -213,5 +225,13 @@
       height: 1px;
       background-color: var(--border-color);
       margin: 10px 30px;
+  }
+
+  /* Specific styling for the mobile logout button */
+  .dashboard-navbar .mobile-nav-link.logout {
+    color: var(--danger-color);
+  }
+  .dashboard-navbar .mobile-nav-link.logout:hover {
+    background-color: rgba(231, 76, 60, 0.1);
   }
 }

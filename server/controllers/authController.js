@@ -82,3 +82,10 @@ export const login = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
+export const logout = (req, res) => {
+    // For stateless JWT, the server doesn't need to do anything.
+    // The client is responsible for destroying the token.
+    // This endpoint is here for good practice and to give the client a target to hit.
+    res.status(200).json({ msg: 'Logged out successfully' });
+};
