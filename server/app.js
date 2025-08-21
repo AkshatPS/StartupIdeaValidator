@@ -6,6 +6,7 @@ import 'dotenv/config'; // The ESM way to load environment variables
 // Import your routes (remember the .js extension for ESM)
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/userRoutes.js';
+import ideaRoutes from './routes/idea.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ mongoose.connect(uri)
 // Routes
 app.use('/api/auth', authRoutes); // All auth routes will be prefixed with /api/auth
 app.use('/api/user', userRoutes);
+app.use('/api/ideas', ideaRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

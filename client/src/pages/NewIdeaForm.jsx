@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './NewIdeaForm.css';
+import axios from 'axios';
 import Navbar from './Navbar'; // The persistent dashboard navbar
+import { useNavigate } from 'react-router-dom';
 
 const NewIdeaForm = () => {
     const initialFormState = {
@@ -16,9 +18,11 @@ const NewIdeaForm = () => {
 
     const [formData, setFormData] = useState(initialFormState);
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // To disable button on submit
     const [charCount, setCharCount] = useState(0);
     const DESCRIPTION_MAX_CHARS = 1000;
-
+    const navigate = useNavigate(); // Hook for navigation
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         
@@ -45,12 +49,45 @@ const NewIdeaForm = () => {
         return true;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validateForm()) {
-            console.log('Form Submitted:', formData);
-            // Here you would make an API call to your backend
-            alert('Idea submitted successfully! (Check console for data)');
+        if (!validateForm()) return;
+
+        setIsLoading(true);
+
+        try {
+            // Retrieve the token from localStorage
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('You must be logged in to submit an idea.');
+                setIsLoading(false);
+                return;
+            }
+
+            // Set up the headers for the authenticated request
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Standard way to send JWT
+                }
+            };
+
+            // Send the form data to your backend API using axios
+            const response = await axios.post('http://localhost:5000/api/ideas', formData, config);
+            
+            const { ideaId } = response.data;
+            
+            // Redirect to the validation page
+            navigate(`/validate/${ideaId}`);
+
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
+            } else {
+                setError('An unexpected error occurred. Please try again.');
+            }
+            console.error('Submission Error:', err);
+            setIsLoading(false);
         }
     };
 
@@ -145,13 +182,13 @@ const NewIdeaForm = () => {
                     </div>
 
                     <div className="form-actions">
-                        <button type="button" className="btn btn-secondary" onClick={handleClearForm}>
-                            ✨ Clear Form
-                        </button>
-                        <button type="submit" className="btn btn-accent">
-                            Submit for Validation
-                        </button>
-                    </div>
+                         <button type="button" className="btn btn-secondary" onClick={handleClearForm} disabled={isLoading}>
+                             ✨ Clear Form
+                         </button>
+                         <button type="submit" className="btn btn-accent" disabled={isLoading}>
+                             {isLoading ? 'Submitting...' : 'Submit for Validation'}
+                         </button>
+                     </div>
                 </form>
             </div>
             <footer className="dashboard-footer">
