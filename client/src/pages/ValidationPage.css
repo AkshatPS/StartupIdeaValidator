@@ -13,7 +13,7 @@
   background-color: var(--dominant-color);
   color: var(--neutral-color);
   min-height: 100vh;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .validation-container {
@@ -43,6 +43,7 @@
   justify-content: space-between;
   margin-bottom: 50px;
   position: relative;
+  align-items: flex-start; /* Align items to the top */
 }
 
 .step-item-container {
@@ -52,9 +53,12 @@
   flex-direction: column;
   position: relative;
 }
+
+/* This is the key fix: The last step container should not grow */
 .step-item-container:last-child {
-    flex: 0;
+    flex-grow: 0;
 }
+
 
 .step-item {
   width: 40px;
@@ -75,6 +79,7 @@
     font-size: 0.85rem;
     color: #888;
     transition: color 0.4s ease;
+    text-align: center;
 }
 
 .step-item.completed {
@@ -106,7 +111,18 @@
     background-color: var(--border-color);
     z-index: 1;
     transition: background-color 0.4s ease;
+    transform: translateX(calc(40px / 2)); /* Offset by half the icon width */
 }
+
+/* The last connector should not extend past the icon */
+.step-item-container:last-child .step-connector {
+    display: none;
+}
+.step-item-container:nth-last-child(2) .step-connector {
+    width: calc(100% - 40px); /* Adjust width for the last connector */
+}
+
+
 .step-connector.completed {
     background-color: var(--success-color);
 }
