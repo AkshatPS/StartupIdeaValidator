@@ -30,6 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/new-idea" element={<NewIdeaForm />} />
           <Route path="/validate/:ideaId" element={<ValidationPage />} />
+          <Route path="/edit-idea/:ideaId" element={<NewIdeaForm />} />
           <Route path="/report/:ideaId" element={<ReportPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/settings" element={<SettingsPage />} />

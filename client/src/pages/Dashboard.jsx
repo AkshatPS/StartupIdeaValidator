@@ -24,7 +24,26 @@ const getScoreBadge = (idea) => {
     return { text: 'Low', className: 'low' };
 };
 
-const IdeaCard = ({ idea }) => {
+// --- Confirmation Modal Component ---
+const ConfirmationModal = ({ isOpen, onClose, onConfirm, message }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h4>Confirm Action</h4>
+                <p>{message}</p>
+                <div className="modal-actions">
+                    <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
+                    <button className="btn btn-danger" onClick={onConfirm}>Delete</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+const IdeaCard = ({ idea, onEdit, onDelete }) => {
     const navigate = useNavigate();
     const scoreInfo = getScoreBadge(idea);
 
@@ -37,7 +56,6 @@ const IdeaCard = ({ idea }) => {
             <div className="idea-card-meta">
                 <span>Submitted: {formatDate(idea.createdAt)}</span>
                 <div className="idea-tags">
-                    {/* Split the tags string into an array to map over it */}
                     {idea.tags.split(',').map(tag => (
                         <span key={tag.trim()} className="tag">{tag.trim()}</span>
                     ))}
@@ -47,13 +65,12 @@ const IdeaCard = ({ idea }) => {
                 <button 
                     className="btn btn-primary" 
                     onClick={() => navigate(`/report/${idea._id}`)}
-                    // Disable button if analysis is not complete
                     disabled={idea.status !== 'completed'}
                 >
                     View Report
                 </button>
-                <button className="btn btn-secondary">Edit</button>
-                <button className="btn btn-danger">Delete</button>
+                <button className="btn btn-secondary" onClick={() => onEdit(idea._id)}>Edit</button>
+                <button className="btn btn-danger" onClick={() => onDelete(idea._id)}>Delete</button>
             </div>
         </div>
     );
@@ -70,44 +87,36 @@ const Dashboard = () => {
     const [user, setUser] = useState(null);
     const [ideas, setIdeas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [modalState, setModalState] = useState({ isOpen: false, ideaId: null });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
-                // Handle case where user is not logged in
                 setIsLoading(false);
                 return;
             }
 
             try {
-                const config = {
-                    headers: { Authorization: `Bearer ${token}` },
-                };
-
-                // Fetch user data and user's ideas in parallel
+                const config = { headers: { Authorization: `Bearer ${token}` } };
                 const [userResponse, ideasResponse] = await Promise.all([
                     axios.get('http://localhost:5000/api/user/me', config),
                     axios.get('http://localhost:5000/api/ideas/my-ideas', config)
                 ]);
-
                 setUser(userResponse.data);
                 setIdeas(ideasResponse.data);
-                
             } catch (error) {
                 console.error("Failed to fetch dashboard data", error);
-                // Handle error, e.g., redirect to login if token is invalid
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchData();
     }, []);
 
-    // Effect for scrolling to a section from a hash link
     useEffect(() => {
-        if (!isLoading) { // Only run after initial data load
+        if (!isLoading) {
             const hash = window.location.hash;
             if (hash) {
                 const id = hash.replace('#', '');
@@ -119,9 +128,44 @@ const Dashboard = () => {
         }
     }, [isLoading]);
 
+    const handleEdit = (ideaId) => {
+        navigate(`/edit-idea/${ideaId}`);
+    };
+
+    const openDeleteModal = (ideaId) => {
+        setModalState({ isOpen: true, ideaId: ideaId });
+    };
+
+    const closeDeleteModal = () => {
+        setModalState({ isOpen: false, ideaId: null });
+    };
+
+    const handleConfirmDelete = async () => {
+        const { ideaId } = modalState;
+        const token = localStorage.getItem('token');
+        try {
+            await axios.delete(`http://localhost:5000/api/ideas/${ideaId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            // Remove the deleted idea from the state to update the UI
+            setIdeas(prevIdeas => prevIdeas.filter(idea => idea._id !== ideaId));
+        } catch (error) {
+            console.error("Failed to delete idea", error);
+            // Optionally, show an error message to the user
+        } finally {
+            closeDeleteModal();
+        }
+    };
+
     return (
         <div className="dashboard-wrapper">
             <Navbar />
+            <ConfirmationModal
+                isOpen={modalState.isOpen}
+                onClose={closeDeleteModal}
+                onConfirm={handleConfirmDelete}
+                message="Are you sure you want to delete this idea? This action cannot be undone."
+            />
             <div className="dashboard-container">
                 <main className="main-content">
                     <section className="welcome-section">
@@ -138,7 +182,14 @@ const Dashboard = () => {
                             {isLoading ? (
                                 <p>Loading your ideas...</p>
                             ) : ideas.length > 0 ? (
-                                ideas.map(idea => <IdeaCard key={idea._id} idea={idea} />)
+                                ideas.map(idea => (
+                                    <IdeaCard 
+                                        key={idea._id} 
+                                        idea={idea} 
+                                        onEdit={handleEdit}
+                                        onDelete={openDeleteModal}
+                                    />
+                                ))
                             ) : (
                                 <p>You haven't submitted any ideas yet. Click the button above to get started!</p>
                             )}

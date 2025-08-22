@@ -1,10 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewIdeaForm.css';
 import axios from 'axios';
 import Navbar from './Navbar'; // The persistent dashboard navbar
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const ConfirmationModal = ({ isOpen, onClose, onConfirm, message, confirmText = "Confirm" }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h4>Confirm Action</h4>
+                <p>{message}</p>
+                <div className="modal-actions">
+                    <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
+                    <button className="btn btn-danger" onClick={onConfirm}>{confirmText}</button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const NewIdeaForm = () => {
+    const { ideaId } = useParams(); // Get the ideaId from the URL if it exists
+    const isEditMode = Boolean(ideaId); // Check if we are in edit mode
+
     const initialFormState = {
         title: '',
         pitch: '',
@@ -20,9 +40,34 @@ const NewIdeaForm = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false); // To disable button on submit
     const [charCount, setCharCount] = useState(0);
+    const [isClearModalOpen, setIsClearModalOpen] = useState(false);
     const DESCRIPTION_MAX_CHARS = 1000;
     const navigate = useNavigate(); // Hook for navigation
     
+    useEffect(() => {
+        if (isEditMode) {
+            const fetchIdeaData = async () => {
+                setIsLoading(true);
+                try {
+                    const token = localStorage.getItem('token');
+                    const config = { headers: { Authorization: `Bearer ${token}` } };
+                    const response = await axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config);
+                    
+                    // Populate the form with the fetched data
+                    setFormData(response.data);
+                    setCharCount(response.data.description.length);
+
+                } catch (err) {
+                    console.error("Failed to fetch idea data for editing:", err);
+                    setError("Could not load idea data. Please try again.");
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+            fetchIdeaData();
+        }
+    }, [ideaId, isEditMode]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         
@@ -54,56 +99,56 @@ const NewIdeaForm = () => {
         if (!validateForm()) return;
 
         setIsLoading(true);
+        const token = localStorage.getItem('token');
+        const config = { headers: { Authorization: `Bearer ${token}` } };
 
         try {
-            // Retrieve the token from localStorage
-            const token = localStorage.getItem('token');
-            if (!token) {
-                setError('You must be logged in to submit an idea.');
-                setIsLoading(false);
-                return;
-            }
-
-            // Set up the headers for the authenticated request
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Standard way to send JWT
-                }
-            };
-
-            // Send the form data to your backend API using axios
-            const response = await axios.post('http://localhost:5000/api/ideas', formData, config);
-            
-            const { ideaId } = response.data;
-            
-            // Redirect to the validation page
-            navigate(`/validate/${ideaId}`);
-
-        } catch (err) {
-            if (err.response && err.response.data && err.response.data.message) {
-                setError(err.response.data.message);
+            let response;
+            if (isEditMode) {
+                // --- UPDATE LOGIC ---
+                response = await axios.put(`http://localhost:5000/api/ideas/${ideaId}`, formData, config);
+                // After updating, go back to the dashboard
+                navigate('/dashboard');
             } else {
-                setError('An unexpected error occurred. Please try again.');
+                // --- CREATE LOGIC ---
+                response = await axios.post('http://localhost:5000/api/ideas', formData, config);
+                // After creating, go to the validation page
+                navigate(`/validate/${response.data.ideaId}`);
             }
+        } catch (err) {
+            setError(err.response?.data?.message || 'An unexpected error occurred.');
             console.error('Submission Error:', err);
+        } finally {
             setIsLoading(false);
         }
     };
 
     const handleClearForm = () => {
+        setIsClearModalOpen(true);
+    };
+
+    // This function contains the original logic and is called by the modal's confirm button
+    const handleConfirmClear = () => {
         setFormData(initialFormState);
         setCharCount(0);
         setError('');
+        setIsClearModalOpen(false); // Close the modal
     };
 
     return (
         <div className="form-page-wrapper">
             <Navbar />
+            <ConfirmationModal
+                isOpen={isClearModalOpen}
+                onClose={() => setIsClearModalOpen(false)}
+                onConfirm={handleConfirmClear}
+                message="Are you sure you want to clear the form? All unsaved changes will be lost."
+                confirmText="Clear Form"
+            />
             <div className="form-container">
                 <div className="form-header">
-                    <h1>Validate a New Idea</h1>
-                    <p>Fill in the details below to get an AI-powered analysis of your concept.</p>
+                    <h1>{isEditMode ? 'Edit Your Idea' : 'Validate a New Idea'}</h1>
+                    <p>{isEditMode ? 'Refine your concept and resubmit for analysis.' : 'Fill in the details to get an AI-powered analysis.'}</p>
                 </div>
 
                 {error && <p className="error-message">{error}</p>}
@@ -185,8 +230,11 @@ const NewIdeaForm = () => {
                          <button type="button" className="btn btn-secondary" onClick={handleClearForm} disabled={isLoading}>
                              ✨ Clear Form
                          </button>
+                         <button type="button" className="btn btn-secondary" onClick={() => navigate('/dashboard')}>
+                             Cancel
+                         </button>
                          <button type="submit" className="btn btn-accent" disabled={isLoading}>
-                             {isLoading ? 'Submitting...' : 'Submit for Validation'}
+                             {isLoading ? 'Saving...' : (isEditMode ? 'Update Idea' : 'Submit for Validation')}
                          </button>
                      </div>
                 </form>

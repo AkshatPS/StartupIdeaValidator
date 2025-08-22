@@ -83,4 +83,62 @@ router.get('/:id', auth, async (req, res) => {
     }
 });
 
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        // Find the idea by its ID
+        const idea = await Idea.findById(req.params.id);
+
+        if (!idea) {
+            return res.status(404).json({ message: 'Idea not found.' });
+        }
+
+        // Ensure the user owns the idea
+        if (idea.userId.toString() !== req.user.id) {
+            return res.status(403).json({ message: 'User not authorized to delete this idea.' });
+        }
+
+        // Delete the idea
+        await idea.deleteOne();
+
+        res.json({ message: 'Idea removed successfully.' });
+
+    } catch (error) {
+        console.error('Error deleting idea:', error);
+        res.status(500).json({ message: 'Server error while deleting idea.' });
+    }
+});
+
+router.put('/:id', auth, async (req, res) => {
+    try {
+        // Find the idea by its ID
+        const idea = await Idea.findById(req.params.id);
+
+        if (!idea) {
+            return res.status(404).json({ message: 'Idea not found.' });
+        }
+
+        // Ensure the user owns the idea
+        if (idea.userId.toString() !== req.user.id) {
+            return res.status(403).json({ message: 'User not authorized to edit this idea.' });
+        }
+
+        // Update the idea with the new data from the request body
+        const updatedIdea = await Idea.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true } // This option returns the document after it has been updated
+        );
+        
+        // Optional: If you want to re-trigger analysis after an edit,
+        // you can call your Flask service again here.
+        // For now, we'll just save the changes.
+
+        res.json({ message: 'Idea updated successfully.', idea: updatedIdea });
+
+    } catch (error) {
+        console.error('Error updating idea:', error);
+        res.status(500).json({ message: 'Server error while updating idea.' });
+    }
+});
+
 export default router;

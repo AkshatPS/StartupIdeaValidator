@@ -13,7 +13,7 @@
   background-color: var(--dominant-color);
   color: var(--neutral-color);
   min-height: 100vh;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Oswald','Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .validation-container {

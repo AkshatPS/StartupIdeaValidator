@@ -61,7 +61,6 @@ const Navbar = () => {
                     <ul className="nav-menu-main">
                         <li><NavLink to="/dashboard" className="nav-links">Dashboard</NavLink></li>
                         <li><NavLink to="/new-idea" className="nav-links">Validate New Idea</NavLink></li>
-                        <li><NavLink to="/dashboard#recent-validations-section" className="nav-links">History</NavLink></li>
                     </ul>
 
                     <div className="profile-section" ref={profileRef}>
