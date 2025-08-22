@@ -76,6 +76,63 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* --- Add these styles to your existing ProfilePage.css file --- */
+
+/* Confirmation Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--secondary-color);
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.modal-content h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+  color: var(--danger-color);
+}
+
+.modal-content p {
+  margin: 0 0 15px 0;
+  color: #b0b3b8;
+  line-height: 1.6;
+}
+
+.required-text-display {
+    background-color: var(--dominant-color);
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: var(--neutral-color);
+    margin-bottom: 20px !important;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
