@@ -9,7 +9,6 @@ import NewIdeaForm from "./pages/NewIdeaForm";
 import ValidationPage from "./pages/ValidationPage";
 import ReportPage from "./pages/ReportPage";
 import ProfilePage from "./pages/ProfilePage";
-import SettingsPage from "./pages/SettingsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
@@ -33,7 +32,6 @@ function App() {
           <Route path="/edit-idea/:ideaId" element={<NewIdeaForm />} />
           <Route path="/report/:ideaId" element={<ReportPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
         </Route>
 
         {/* --- Catch-all Route --- */}

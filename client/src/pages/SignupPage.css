@@ -20,7 +20,8 @@
 
 .signup-form-wrapper {
   background-color: var(--secondary-color);
-  padding: 40px;
+  padding-left: 15px;
+  padding-right: 40px;
   border-radius: 12px;
   width: 100%;
   max-width: 500px;
@@ -54,6 +55,7 @@
 
 .form-group label {
   display: block;
+  padding-left: 5px;
   margin-bottom: 8px;
   font-size: 0.9rem;
   font-weight: 500;
@@ -86,6 +88,7 @@
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -132,6 +135,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   transition: background-color 0.2s;
 }
 

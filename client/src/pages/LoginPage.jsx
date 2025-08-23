@@ -81,7 +81,6 @@ const LoginPage = () => {
             <div className="form-group">
               <div className="password-label-container">
                 <label htmlFor="password">Password</label>
-                <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
               </div>
               <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>

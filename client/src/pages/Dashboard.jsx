@@ -205,9 +205,6 @@ const Dashboard = () => {
                             <li>Keep your initial idea description concise.</li>
                         </ul>
                     </SidebarPanel>
-                    <SidebarPanel title="Featured Ideas">
-                        <p className="placeholder-text">Top-rated community ideas will be shown here.</p>
-                    </SidebarPanel>
                     <SidebarPanel title="Resources">
                         <a href="https://www.canva.com/presentations/templates/pitch-deck/" target="_blank" rel="noopener noreferrer" className="resource-link">Pitch Deck Templates</a>
                         <a href="https://www.fundable.com/learn/resources/guides/startup" target="_blank" rel="noopener noreferrer" className="resource-link">Startup Guideline</a>

@@ -70,7 +70,6 @@ const Navbar = () => {
                         {isProfileOpen && (
                             <div className="profile-dropdown">
                                 <NavLink to="/profile" className="dropdown-item">Profile</NavLink>
-                                <NavLink to="/settings" className="dropdown-item">Settings</NavLink>
                                 <div className="dropdown-divider"></div>
                                 {/* Updated to be a button that calls handleLogout */}
                                 <button onClick={handleLogout} className="dropdown-item logout">Logout</button>

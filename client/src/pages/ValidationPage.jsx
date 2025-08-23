@@ -11,10 +11,9 @@ const Stepper = ({ activeStep }) => {
     return (
         <div className="stepper-wrapper">
             {steps.map((label, index) => (
-                <div 
-                    key={label} 
+                <div
+                    key={label}
                     className="step-item-container"
-                    // The inline style has been removed from here for a cleaner CSS-based solution
                 >
                     <div className={`step-item ${index <= activeStep ? 'completed' : ''} ${index === activeStep ? 'active' : ''}`}>
                         <div className="step-icon">{index < activeStep ? '✓' : '●'}</div>

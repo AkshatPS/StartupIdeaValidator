@@ -19,7 +19,8 @@
 
 .login-form-wrapper {
   background-color: var(--secondary-color);
-  padding: 40px;
+  padding-left: 15px;
+  padding-right: 40px;
   border-radius: 12px;
   width: 100%;
   max-width: 450px; /* Slightly smaller width for simpler form */
@@ -95,6 +96,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   margin-top: 10px; /* Add some space above the button */
 }
 
@@ -141,6 +143,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   transition: background-color 0.2s;
 }
 
