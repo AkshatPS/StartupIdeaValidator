@@ -46,7 +46,7 @@ const ReportPage = () => {
     useEffect(() => {
         const fetchReportData = async () => {
             try {
-                const token = localStorage.getItem('token');
+                const token = localStorage.getItem('authToken');
                 if (!token) {
                     setError("Authentication required.");
                     setIsLoading(false);

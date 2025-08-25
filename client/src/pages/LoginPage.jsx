@@ -43,7 +43,7 @@ const LoginPage = () => {
       
       // On successful login, save the token
       const { token } = response.data;
-      localStorage.setItem('token', token);
+      localStorage.setItem('authToken', token);
 
       // Redirect to the dashboard
       navigate('/dashboard');
@@ -59,7 +59,8 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    console.log('Initiating Google Login...');
+    // This will redirect the user to the backend route
+        window.location.href = "http://localhost:5000/api/auth/google";
   };
 
   return (

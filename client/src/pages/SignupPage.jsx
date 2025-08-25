@@ -87,9 +87,8 @@ const SignupPage = () => {
   };
 
   const handleGoogleSignup = () => {
-    console.log('Initiating Google Sign-Up...');
     // This is where you would redirect to the Google OAuth endpoint on your server
-    // For example: window.location.href = 'http://localhost:5000/api/auth/google';
+    window.location.href = 'http://localhost:5000/api/auth/google';
   };
 
   return (

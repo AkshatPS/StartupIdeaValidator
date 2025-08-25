@@ -49,7 +49,7 @@ const NewIdeaForm = () => {
             const fetchIdeaData = async () => {
                 setIsLoading(true);
                 try {
-                    const token = localStorage.getItem('token');
+                    const token = localStorage.getItem('authToken');
                     const config = { headers: { Authorization: `Bearer ${token}` } };
                     const response = await axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config);
                     
@@ -99,7 +99,7 @@ const NewIdeaForm = () => {
         if (!validateForm()) return;
 
         setIsLoading(true);
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('authToken');
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         try {

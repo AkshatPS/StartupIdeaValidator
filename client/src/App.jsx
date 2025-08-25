@@ -11,6 +11,7 @@ import ReportPage from "./pages/ReportPage";
 import ProfilePage from "./pages/ProfilePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-
+        <Route path="/auth/callback" element={<AuthCallbackPage />} />
         {/* --- Protected Routes --- */}
         {/* These routes are only accessible to authenticated users */}
         {/* The ProtectedRoute component will check for a token */}

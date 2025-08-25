@@ -57,7 +57,7 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('token');
+                const token = localStorage.getItem('authToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
                 const response = await axios.get('http://localhost:5000/api/user/me', config);
                 setUser(response.data);
@@ -78,7 +78,7 @@ const ProfilePage = () => {
     const handleUserSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('authToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
             await axios.put('http://localhost:5000/api/user/update', userDetails, config);
             alert('Profile details updated!');
@@ -94,7 +94,7 @@ const ProfilePage = () => {
             return;
         }
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('authToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
             await axios.put('http://localhost:5000/api/user/change-password', passwordDetails, config);
             alert('Password changed successfully!');
@@ -106,12 +106,12 @@ const ProfilePage = () => {
 
     const handleDeleteAccount = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('authToken');
             await axios.delete('http://localhost:5000/api/user/delete', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert('Account deleted successfully.');
-            localStorage.removeItem('token');
+            localStorage.removeItem('authToken');
             navigate('/login');
         } catch (err) {
             alert('Failed to delete account.');

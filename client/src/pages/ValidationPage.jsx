@@ -58,7 +58,7 @@ const ValidationPage = () => {
     };
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('authToken');
         if (!token) {
             setError("Authentication required. Please log in.");
             return;

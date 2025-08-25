@@ -16,6 +16,7 @@
   align-items: center;
   font-size: 1rem;
   position: sticky;
+  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   top: 0;
   z-index: 999;
   border-bottom: 1px solid var(--border-color);
@@ -146,6 +147,7 @@
 /* Specific styling for the logout button */
 .dashboard-navbar .dropdown-item.logout {
     color: var(--danger-color);
+    font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 .dashboard-navbar .dropdown-item.logout:hover {
     background-color: rgba(231, 76, 60, 0.1);

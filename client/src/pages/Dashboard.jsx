@@ -92,7 +92,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('authToken');
             if (!token) {
                 setIsLoading(false);
                 return;
@@ -142,7 +142,7 @@ const Dashboard = () => {
 
     const handleConfirmDelete = async () => {
         const { ideaId } = modalState;
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('authToken');
         try {
             await axios.delete(`http://localhost:5000/api/ideas/${ideaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -170,7 +170,7 @@ const Dashboard = () => {
                 <main className="main-content">
                     <section className="welcome-section">
                         <div className="welcome-text">
-                            <h1>Hi, {user ? `${user.firstName} ${user.lastName}` : '...'}! 👋</h1>
+                            <h1>Hi, {user ? (user.displayName || `${user.firstName} ${user.lastName}`) : '...'}! 👋</h1>
                             <p>Let's validate your next big idea today!</p>
                         </div>
                         <a href="/new-idea" className="btn btn-accent" style={{ textDecoration: 'none' }}>+ Validate New Idea</a>

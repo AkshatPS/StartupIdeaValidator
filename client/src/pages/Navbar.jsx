@@ -32,7 +32,7 @@ const Navbar = () => {
     // --- LOGOUT FUNCTIONALITY ---
     const handleLogout = () => {
         // 1. Remove the token from localStorage
-        localStorage.removeItem('token');
+        localStorage.removeItem('authToken');
         // 2. Redirect to the login page
         navigate('/login', { replace: true });
     };
