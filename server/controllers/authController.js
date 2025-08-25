@@ -61,21 +61,12 @@ export const login = async (req, res) => {
         }
 
         // 3. Create and sign a JWT
-        const payload = {
-            user: {
-                id: user.id // The user's MongoDB document ID
-            }
-        };
+        const payload = { id: user._id, email: user.email };
 
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET, // Your secret key from .env
-            { expiresIn: '5h' }, // Token expires in 5 hours
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token }); // Send the token to the client
-            }
-        );
+        // Sign the token and send it back to the client
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
+
+        res.json({ token, user: { /* user details if you want */ } }); // CRITICAL: Send the token
 
     } catch (err) {
         console.error(err.message);

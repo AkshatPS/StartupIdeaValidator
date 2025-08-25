@@ -4,11 +4,16 @@ import './ProfilePage.css';
 import Navbar from './Navbar';
 import api from '../api/axiosConfig';
 
-// A more advanced modal for delete confirmation
-const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, username }) => {
+// A more robust modal using the user's email for confirmation
+const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, userEmail }) => {
     const [confirmationText, setConfirmationText] = useState('');
-    const requiredText = `delete-${username}`;
+    const requiredText = userEmail || ''; // Use email for confirmation
     const isMatch = confirmationText === requiredText;
+
+    useEffect(() => {
+        // Reset input when modal is opened or closed
+        if (!isOpen) setConfirmationText('');
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
@@ -16,14 +21,14 @@ const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, username }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <h4>Delete Account</h4>
-                <p>This action is permanent. To confirm, please type the following text exactly as it appears:</p>
+                <p>This is permanent. To confirm, please type your email address:</p>
                 <p className="required-text-display">{requiredText}</p>
                 <div className="form-group">
                     <input
                         type="text"
                         value={confirmationText}
                         onChange={(e) => setConfirmationText(e.target.value)}
-                        placeholder="Type to confirm..."
+                        placeholder="Type your email to confirm..."
                     />
                 </div>
                 <div className="modal-actions">
@@ -37,13 +42,7 @@ const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, username }) => {
     );
 };
 
-const UserAvatar = ({ size = 100 }) => (
-    <div className="profile-avatar" style={{ width: size, height: size }}>
-        <svg className="profile-avatar-icon" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
-        </svg>
-    </div>
-);
+// --- REMOVED UserAvatar COMPONENT ---
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
@@ -57,11 +56,14 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('authToken');
-                const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await api.get('/api/user/me', config);
+                const response = await api.get('/api/user/me');
                 setUser(response.data);
-                setUserDetails(response.data);
+                setUserDetails({
+                    firstName: response.data.firstName || '',
+                    lastName: response.data.lastName || '',
+                    username: response.data.username || '',
+                    email: response.data.email || ''
+                });
             } catch (err) {
                 console.error("Failed to fetch user data", err);
                 setError("Could not load user profile.");
@@ -78,10 +80,9 @@ const ProfilePage = () => {
     const handleUserSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('authToken');
-            const config = { headers: { Authorization: `Bearer ${token}` } };
-            await api.put('/api/user/update', userDetails, config);
+            await api.put('/api/user/update', userDetails);
             alert('Profile details updated!');
+            setUser(prevUser => ({ ...prevUser, ...userDetails }));
         } catch (err) {
             alert('Failed to update profile.');
         }
@@ -94,9 +95,7 @@ const ProfilePage = () => {
             return;
         }
         try {
-            const token = localStorage.getItem('authToken');
-            const config = { headers: { Authorization: `Bearer ${token}` } };
-            await api.put('/api/user/change-password', passwordDetails, config);
+            await api.put('/api/user/change-password', passwordDetails);
             alert('Password changed successfully!');
             setPasswordDetails({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
         } catch (err) {
@@ -106,10 +105,7 @@ const ProfilePage = () => {
 
     const handleDeleteAccount = async () => {
         try {
-            const token = localStorage.getItem('authToken');
-            await api.delete('/api/user/delete', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            await api.delete('/api/user/delete');
             alert('Account deleted successfully.');
             localStorage.removeItem('authToken');
             navigate('/login');
@@ -130,13 +126,13 @@ const ProfilePage = () => {
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
                 onConfirm={handleDeleteAccount}
-                username={user?.username}
+                userEmail={user?.email}
             />
             <div className="profile-container">
                 <header className="profile-header">
-                    <UserAvatar size={120} />
+                    {/* --- REMOVED UserAvatar LINE FROM HERE --- */}
                     <div className="header-text">
-                        <h2>{user.firstName} {user.lastName}</h2>
+                        <h2>{user.displayName || `${user.firstName} ${user.lastName}`}</h2>
                         <p>{user.email}</p>
                     </div>
                 </header>
@@ -155,38 +151,34 @@ const ProfilePage = () => {
                         </form>
                     </div>
 
-                    <div className="profile-section-card">
-                        <h3>Change Password</h3>
-                        <form onSubmit={handlePasswordSubmit}>
-                            <div className="form-group"><label htmlFor="currentPassword">Current Password</label><input type="password" id="currentPassword" name="currentPassword" value={passwordDetails.currentPassword} onChange={handlePasswordChange} /></div>
-                            <div className="form-group"><label htmlFor="newPassword">New Password</label><input type="password" id="newPassword" name="newPassword" value={passwordDetails.newPassword} onChange={handlePasswordChange} /></div>
-                            <div className="form-group"><label htmlFor="confirmNewPassword">Confirm New Password</label><input type="password" id="confirmNewPassword" name="confirmNewPassword" value={passwordDetails.confirmNewPassword} onChange={handlePasswordChange} /></div>
-                            <div className="form-actions"><button type="submit" className="btn btn-accent">Update Password</button></div>
-                        </form>
-                    </div>
+                    {!user.googleId && (
+                        <div className="profile-section-card">
+                            <h3>Change Password</h3>
+                            <form onSubmit={handlePasswordSubmit}>
+                                <div className="form-group"><label htmlFor="currentPassword">Current Password</label><input type="password" id="currentPassword" name="currentPassword" value={passwordDetails.currentPassword} onChange={handlePasswordChange} /></div>
+                                <div className="form-group"><label htmlFor="newPassword">New Password</label><input type="password" id="newPassword" name="newPassword" value={passwordDetails.newPassword} onChange={handlePasswordChange} /></div>
+                                <div className="form-group"><label htmlFor="confirmNewPassword">Confirm New Password</label><input type="password" id="confirmNewPassword" name="confirmNewPassword" value={passwordDetails.confirmNewPassword} onChange={handlePasswordChange} /></div>
+                                <div className="form-actions"><button type="submit" className="btn btn-accent">Update Password</button></div>
+                            </form>
+                        </div>
+                    )}
 
                     <div className="profile-section-card danger-zone">
                         <h3>Danger Zone</h3>
                         <div className="danger-zone-content">
-                            <p>Deleting your account is a permanent action and cannot be undone. All your account information and related data will be deleted.</p>
+                            <p>Deleting your account is a permanent action and cannot be undone.</p>
                             <button className="btn btn-danger" onClick={() => setIsDeleteModalOpen(true)}>Delete My Account</button>
                         </div>
                     </div>
                 </div>
             </div>
             <footer className="dashboard-footer">
-               <a href="#">About</a>
-               <a href="#">Contact</a>
-               <a href="#">Terms</a>
-               <a href="#">Privacy</a>
-               <a
-                 href="https://github.com/AkshatPS"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >
-                 GitHub
-               </a>
-             </footer>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="https://github.com/AkshatPS" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </footer>
         </div>
     );
 };

@@ -12,7 +12,6 @@ const userSchema = new Schema({
     },
     displayName: { // To store the full name from Google, which is more reliable
         type: String,
-        required: true,
     },
     image: { // To store the profile picture URL from Google
         type: String,
