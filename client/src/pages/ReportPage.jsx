@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import jsPDF from 'jspdf';
 // html2canvas is no longer needed for this method
 import './ReportPage.css';
 import Navbar from './Navbar';
+import api from '../api/axiosConfig';
 
 const ReportPage = () => {
     const { ideaId } = useParams();
@@ -53,7 +53,7 @@ const ReportPage = () => {
                     return;
                 }
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config);
+                const response = await api.get(`/api/ideas/${ideaId}`, config);
                 
                 if (response.data.status !== 'completed' || !response.data.analysisResult) {
                      setError("Analysis for this idea is not yet complete. Please check back later.");

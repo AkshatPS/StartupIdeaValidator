@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import for redirection
-import axios from 'axios'; // Import axios for API calls
 import './SignupPage.css';
 import AuthNavbar from './AuthNavbar';
+import api from '../api/axiosConfig';
 
 // Google Icon SVG component
 const GoogleIcon = () => (
@@ -55,7 +55,7 @@ const SignupPage = () => {
       const { confirmPassword, ...postData } = formData;
 
       // Make API call to the backend signup endpoint
-      const response = await axios.post('http://localhost:5000/api/auth/signup', postData);
+      const response = await api.post('/api/auth/signup', postData);
       
       // Handle success
       setSuccess(response.data.msg); // "User registered successfully! Please log in."
@@ -88,7 +88,8 @@ const SignupPage = () => {
 
   const handleGoogleSignup = () => {
     // This is where you would redirect to the Google OAuth endpoint on your server
-    window.location.href = 'http://localhost:5000/api/auth/google';
+    const apiUrl = process.env.REACT_APP_API_URL;
+    window.location.href = `${apiUrl}/api/auth/google`;
   };
 
   return (

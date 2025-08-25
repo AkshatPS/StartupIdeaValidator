@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './ValidationPage.css';
 import Navbar from './Navbar';
+import api from '../api/axiosConfig';
 
 // --- Sub-components (can be in the same file or imported) ---
 
@@ -71,7 +71,7 @@ const ValidationPage = () => {
         const fetchAndPoll = () => {
             const intervalId = setInterval(async () => {
                 try {
-                    const response = await axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config);
+                    const response = await api.get(`/api/ideas/${ideaId}`, config);
                     const data = response.data;
 
                     setIdeaData(data);
@@ -96,7 +96,7 @@ const ValidationPage = () => {
         };
 
         // Perform an initial fetch immediately
-        axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config)
+        api.get(`/api/ideas/${ideaId}`, config)
             .then(response => {
                 setIdeaData(response.data);
                 const currentStep = statusToStepMap[response.data.status] || 0;

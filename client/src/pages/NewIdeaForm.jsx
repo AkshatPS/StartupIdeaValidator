@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './NewIdeaForm.css';
-import axios from 'axios';
 import Navbar from './Navbar'; // The persistent dashboard navbar
 import { useNavigate, useParams } from 'react-router-dom';
+import api from '../api/axiosConfig';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, message, confirmText = "Confirm" }) => {
     if (!isOpen) return null;
@@ -51,7 +51,7 @@ const NewIdeaForm = () => {
                 try {
                     const token = localStorage.getItem('authToken');
                     const config = { headers: { Authorization: `Bearer ${token}` } };
-                    const response = await axios.get(`http://localhost:5000/api/ideas/${ideaId}`, config);
+                    const response = await api.get(`/api/ideas/${ideaId}`, config);
                     
                     // Populate the form with the fetched data
                     setFormData(response.data);
@@ -106,12 +106,12 @@ const NewIdeaForm = () => {
             let response;
             if (isEditMode) {
                 // --- UPDATE LOGIC ---
-                response = await axios.put(`http://localhost:5000/api/ideas/${ideaId}`, formData, config);
+                response = await api.put(`/api/ideas/${ideaId}`, formData, config);
                 // After updating, go back to the dashboard
                 navigate('/dashboard');
             } else {
                 // --- CREATE LOGIC ---
-                response = await axios.post('http://localhost:5000/api/ideas', formData, config);
+                response = await api.post('/api/ideas', formData, config);
                 // After creating, go to the validation page
                 navigate(`/validate/${response.data.ideaId}`);
             }

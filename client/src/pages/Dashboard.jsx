@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './Dashboard.css';
 import Navbar from './Navbar';
+import api from '../api/axiosConfig';
 
 // Helper function to format the date
 const formatDate = (dateString) => {
@@ -101,8 +101,8 @@ const Dashboard = () => {
             try {
                 const config = { headers: { Authorization: `Bearer ${token}` } };
                 const [userResponse, ideasResponse] = await Promise.all([
-                    axios.get('http://localhost:5000/api/user/me', config),
-                    axios.get('http://localhost:5000/api/ideas/my-ideas', config)
+                    api.get('/api/user/me'),
+                    api.get('/api/ideas/my-ideas')
                 ]);
                 setUser(userResponse.data);
                 setIdeas(ideasResponse.data);
@@ -144,7 +144,7 @@ const Dashboard = () => {
         const { ideaId } = modalState;
         const token = localStorage.getItem('authToken');
         try {
-            await axios.delete(`http://localhost:5000/api/ideas/${ideaId}`, {
+            await api.delete(`/api/ideas/${ideaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             // Remove the deleted idea from the state to update the UI

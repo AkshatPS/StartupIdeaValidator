@@ -28,7 +28,7 @@ router.post('/', auth, async (req, res) => {
         
         // We use a .catch() here so that even if the Python server is down,
         // the user's idea is still saved and they get a successful response.
-        axios.post('http://localhost:5002/analyze', {
+        axios.post(`${process.env.FLASK_API_URL}/analyze`, {
             ideaId: savedIdea._id.toString()
         }).catch(err => {
             console.error("Error triggering Flask analysis service:", err.message);

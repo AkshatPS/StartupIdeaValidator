@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './LoginPage.css';
 import AuthNavbar from './AuthNavbar';
+import api from '../api/axiosConfig';
 
 const GoogleIcon = () => (
   <svg className="google-icon" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ const LoginPage = () => {
     }
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const response = await api.post('/api/auth/login', formData);
       
       // On successful login, save the token
       const { token } = response.data;
@@ -60,7 +60,8 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     // This will redirect the user to the backend route
-        window.location.href = "http://localhost:5000/api/auth/google";
+        const apiUrl = process.env.REACT_APP_API_URL;
+        window.location.href = `${apiUrl}/api/auth/google`;
   };
 
   return (

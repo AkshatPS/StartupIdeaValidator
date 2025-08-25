@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './ProfilePage.css';
 import Navbar from './Navbar';
+import api from '../api/axiosConfig';
 
 // A more advanced modal for delete confirmation
 const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, username }) => {
@@ -59,7 +59,7 @@ const ProfilePage = () => {
             try {
                 const token = localStorage.getItem('authToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await axios.get('http://localhost:5000/api/user/me', config);
+                const response = await api.get('/api/user/me', config);
                 setUser(response.data);
                 setUserDetails(response.data);
             } catch (err) {
@@ -80,7 +80,7 @@ const ProfilePage = () => {
         try {
             const token = localStorage.getItem('authToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.put('http://localhost:5000/api/user/update', userDetails, config);
+            await api.put('/api/user/update', userDetails, config);
             alert('Profile details updated!');
         } catch (err) {
             alert('Failed to update profile.');
@@ -96,7 +96,7 @@ const ProfilePage = () => {
         try {
             const token = localStorage.getItem('authToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.put('http://localhost:5000/api/user/change-password', passwordDetails, config);
+            await api.put('/api/user/change-password', passwordDetails, config);
             alert('Password changed successfully!');
             setPasswordDetails({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
         } catch (err) {
@@ -107,7 +107,7 @@ const ProfilePage = () => {
     const handleDeleteAccount = async () => {
         try {
             const token = localStorage.getItem('authToken');
-            await axios.delete('http://localhost:5000/api/user/delete', {
+            await api.delete('/api/user/delete', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert('Account deleted successfully.');
