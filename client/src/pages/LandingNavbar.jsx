@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './LandingNavbar.css'; // Import the stylesheet
+import React, { useState } from "react";
+import "./LandingNavbar.css";
 
 const LandingNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,12 +10,12 @@ const LandingNavbar = () => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
     // Close mobile menu on link click
     if (isMobileMenuOpen) {
-        setMobileMenuOpen(false);
+      setMobileMenuOpen(false);
     }
   };
 
@@ -24,14 +24,14 @@ const LandingNavbar = () => {
     e.preventDefault();
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-     // Close mobile menu on link click
+    // Close mobile menu on link click
     if (isMobileMenuOpen) {
-        setMobileMenuOpen(false);
+      setMobileMenuOpen(false);
     }
   };
-  
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -46,25 +46,33 @@ const LandingNavbar = () => {
 
         {/* Hamburger Menu Icon for Mobile */}
         <div className="menu-icon" onClick={toggleMobileMenu}>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
         </div>
 
         {/* Navigation Links */}
-        <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-menu ${isMobileMenuOpen ? "active" : ""}`}>
           <li className="nav-item">
             <a href="#" className="nav-links" onClick={handleHomeClick}>
               Home
             </a>
           </li>
           <li className="nav-item">
-            <a href="#how-it-works-section" className="nav-links" onClick={(e) => handleScroll(e, 'how-it-works-section')}>
+            <a
+              href="#how-it-works-section"
+              className="nav-links"
+              onClick={(e) => handleScroll(e, "how-it-works-section")}
+            >
               How it works
             </a>
           </li>
           <li className="nav-item">
-            <a href="#features-section" className="nav-links" onClick={(e) => handleScroll(e, 'features-section')}>
+            <a
+              href="#features-section"
+              className="nav-links"
+              onClick={(e) => handleScroll(e, "features-section")}
+            >
               Features
             </a>
           </li>

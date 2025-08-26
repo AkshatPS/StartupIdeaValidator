@@ -1,9 +1,8 @@
-/* Using the same color palette from dashboard.css */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
   --border-color: #4a4e57;
   --danger-color: #e74c3c;
 }
@@ -16,7 +15,8 @@
   align-items: center;
   font-size: 1rem;
   position: sticky;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   top: 0;
   z-index: 999;
   border-bottom: 1px solid var(--border-color);
@@ -32,10 +32,11 @@
   padding: 0 30px;
 }
 
-.dashboard-navbar .navbar-left, .dashboard-navbar .navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Increased gap for better spacing */
+.dashboard-navbar .navbar-left,
+.dashboard-navbar .navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Increased gap for better spacing */
 }
 
 .dashboard-navbar .navbar-logo {
@@ -68,89 +69,89 @@
 }
 
 .dashboard-navbar .nav-links::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--accent-color);
-    transition: width 0.3s;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s;
 }
 
 .dashboard-navbar .nav-links:hover::after {
-    width: 100%;
+  width: 100%;
 }
-
 
 /* --- Profile Section --- */
 .dashboard-navbar .profile-section {
-    position: relative;
+  position: relative;
 }
 
 .dashboard-navbar .profile-avatar-button {
-    background: var(--dominant-color);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 0;
+  background: var(--dominant-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
 }
 
 .dashboard-navbar .user-avatar-icon {
-    width: 24px;
-    height: 24px;
-    color: var(--neutral-color);
+  width: 24px;
+  height: 24px;
+  color: var(--neutral-color);
 }
 
 .dashboard-navbar .profile-dropdown {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    width: 180px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    overflow: hidden;
-    z-index: 1000;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 180px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
 }
 
 /* Base style for both links and buttons in the dropdown */
 .dashboard-navbar .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 12px 15px;
-    color: var(--neutral-color);
-    text-decoration: none;
-    font-size: 0.95rem;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  color: var(--neutral-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
 }
 
 .dashboard-navbar .dropdown-item:hover {
-    background-color: var(--dominant-color);
+  background-color: var(--dominant-color);
 }
 
 .dashboard-navbar .dropdown-divider {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 5px 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 5px 0;
 }
 
 /* Specific styling for the logout button */
 .dashboard-navbar .dropdown-item.logout {
-    color: var(--danger-color);
-    font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--danger-color);
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
 }
 .dashboard-navbar .dropdown-item.logout:hover {
-    background-color: rgba(231, 76, 60, 0.1);
+  background-color: rgba(231, 76, 60, 0.1);
 }
 
 /* --- Mobile Menu --- */
@@ -159,16 +160,15 @@
 }
 
 .dashboard-navbar .mobile-menu {
-    display: none;
+  display: none;
 }
-
 
 /* --- Responsive Design --- */
 @media screen and (max-width: 960px) {
   .dashboard-navbar .nav-menu-main {
     display: none;
   }
-  
+
   .dashboard-navbar .menu-icon {
     display: flex;
     cursor: pointer;
@@ -179,21 +179,21 @@
   }
 
   .dashboard-navbar .menu-icon .bar {
-      width: 100%;
-      height: 3px;
-      background-color: var(--neutral-color);
-      border-radius: 2px;
-      transition: all 0.3s ease-in-out;
+    width: 100%;
+    height: 3px;
+    background-color: var(--neutral-color);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
   }
 
   .dashboard-navbar .menu-icon .bar.open:nth-child(1) {
-      transform: translateY(10.5px) rotate(45deg);
+    transform: translateY(10.5px) rotate(45deg);
   }
   .dashboard-navbar .menu-icon .bar.open:nth-child(2) {
-      opacity: 0;
+    opacity: 0;
   }
   .dashboard-navbar .menu-icon .bar.open:nth-child(3) {
-      transform: translateY(-10.5px) rotate(-45deg);
+    transform: translateY(-10.5px) rotate(-45deg);
   }
 
   .dashboard-navbar .mobile-menu {
@@ -206,7 +206,7 @@
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   .dashboard-navbar .mobile-nav-link {
@@ -221,12 +221,12 @@
     width: 100%;
   }
   .dashboard-navbar .mobile-nav-link:hover {
-      background-color: var(--dominant-color);
+    background-color: var(--dominant-color);
   }
   .dashboard-navbar .mobile-divider {
-      height: 1px;
-      background-color: var(--border-color);
-      margin: 10px 30px;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 10px 30px;
   }
 
   /* Specific styling for the mobile logout button */

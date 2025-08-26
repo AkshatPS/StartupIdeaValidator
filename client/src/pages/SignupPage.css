@@ -1,4 +1,3 @@
-/* Using the same color palette */
 :root {
   --dominant-color: #222831;
   --secondary-color: #393e46;
@@ -88,7 +87,8 @@
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -135,7 +135,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   transition: background-color 0.2s;
 }
 

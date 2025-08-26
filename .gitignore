@@ -29,3 +29,4 @@ ehthumbs_vista.db
 *.stackdump
 coverage/
 .nyc_output/
+colors.txt

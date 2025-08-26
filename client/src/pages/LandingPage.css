@@ -1,14 +1,14 @@
-/* Color Palette as CSS Variables */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
 }
 
 /* General Page Styles */
 .page {
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   background-color: var(--dominant-color);
   color: var(--neutral-color);
   text-align: center;
@@ -130,8 +130,8 @@
 }
 
 .cta-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .cta-button {

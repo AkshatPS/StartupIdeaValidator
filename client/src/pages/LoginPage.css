@@ -1,9 +1,8 @@
-/* Using the same color palette */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
   --error-color: #e74c3c;
 }
 
@@ -14,7 +13,8 @@
   min-height: 100vh;
   background-color: var(--dominant-color);
   padding: 40px 20px;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
 }
 
 .login-form-wrapper {
@@ -23,7 +23,7 @@
   padding-right: 40px;
   border-radius: 12px;
   width: 100%;
-  max-width: 450px; /* Slightly smaller width for simpler form */
+  max-width: 450px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   color: var(--neutral-color);
 }
@@ -70,19 +70,9 @@
 }
 
 .password-label-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.forgot-password-link {
-    font-size: 0.85rem;
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-.forgot-password-link:hover {
-    text-decoration: underline;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .login-button {
@@ -96,8 +86,9 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  margin-top: 10px; /* Add some space above the button */
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
+  margin-top: 10px;
 }
 
 .login-button:hover {
@@ -143,7 +134,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   transition: background-color 0.2s;
 }
 

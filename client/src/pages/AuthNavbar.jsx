@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './AuthNavbar.css'; // Using the new stylesheet
+import React, { useState } from "react";
+import "./AuthNavbar.css";
 
 const AuthNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -7,11 +7,9 @@ const AuthNavbar = () => {
   // Function to navigate to a different page (e.g., home)
   const handleNavigate = (e, path) => {
     e.preventDefault();
-    // In a real React app, you'd use react-router-dom's useNavigate hook
-    // For this example, we'll simulate it with window.location
     window.location.href = path;
   };
-  
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -20,21 +18,29 @@ const AuthNavbar = () => {
     <nav className="auth-navbar">
       <div className="navbar-container">
         {/* Logo / Brand Name - Links to Landing Page */}
-        <a href="/" className="navbar-logo" onClick={(e) => handleNavigate(e, '/')}>
+        <a
+          href="/"
+          className="navbar-logo"
+          onClick={(e) => handleNavigate(e, "/")}
+        >
           Startalyze
         </a>
 
         {/* Hamburger Menu Icon for Mobile */}
         <div className="menu-icon" onClick={toggleMobileMenu}>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
-            <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? "open" : ""}`}></div>
         </div>
 
         {/* Navigation Links */}
-        <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-menu ${isMobileMenuOpen ? "active" : ""}`}>
           <li className="nav-item">
-            <a href="/" className="nav-links" onClick={(e) => handleNavigate(e, '/')}>
+            <a
+              href="/"
+              className="nav-links"
+              onClick={(e) => handleNavigate(e, "/")}
+            >
               Home
             </a>
           </li>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
 // This component checks if a user is authenticated
 // If they are, it renders the child components (Outlet)
@@ -7,7 +7,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoute = () => {
   // Check for the token in localStorage
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem("authToken");
 
   // If a token exists, the user is considered authenticated
   // The <Outlet /> component will render the nested route's element

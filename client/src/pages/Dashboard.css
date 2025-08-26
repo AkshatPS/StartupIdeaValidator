@@ -1,9 +1,8 @@
-/* Using the same color palette for consistency */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
   --success-color: #2ecc71;
   --warning-color: #f1c40f;
   --danger-color: #e74c3c;
@@ -14,7 +13,8 @@
   background-color: var(--dominant-color);
   color: var(--neutral-color);
   min-height: 100vh;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
 }
 
 .dashboard-container {
@@ -52,11 +52,12 @@
   color: #b0b3b8;
 }
 
-.my-ideas-section h2, .recent-validations-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+.my-ideas-section h2,
+.recent-validations-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
 }
 
 .ideas-list {
@@ -74,8 +75,8 @@
 }
 
 .idea-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .idea-card-header {
@@ -100,9 +101,15 @@
   color: var(--dominant-color);
   text-transform: uppercase;
 }
-.score-high { background-color: var(--success-color); }
-.score-medium { background-color: var(--warning-color); }
-.score-low { background-color: var(--danger-color); }
+.score-high {
+  background-color: var(--success-color);
+}
+.score-medium {
+  background-color: var(--warning-color);
+}
+.score-low {
+  background-color: var(--danger-color);
+}
 
 .idea-card-meta {
   display: flex;
@@ -150,26 +157,26 @@
 }
 
 .sidebar-panel-content ul {
-    list-style-position: inside;
-    padding-left: 5px;
-    margin: 0;
-    font-size: 0.9rem;
-    color: #b0b3b8;
+  list-style-position: inside;
+  padding-left: 5px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b0b3b8;
 }
 
 .sidebar-panel-content li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .resource-link {
-    display: block;
-    color: var(--accent-color);
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
+  display: block;
+  color: var(--accent-color);
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
 }
 .resource-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* --- General & Utility Classes --- */
@@ -242,11 +249,10 @@
   gap: 15px;
 }
 
-
 .placeholder-text {
-    color: #888;
-    font-style: italic;
-    font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 /* --- Footer --- */
@@ -274,14 +280,14 @@
 }
 
 @media screen and (max-width: 768px) {
-    .welcome-section {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-    .idea-card-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
+  .welcome-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .idea-card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }

@@ -1,9 +1,8 @@
-/* Using the established color palette */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
 }
 
 /* Keyframe animations */
@@ -20,12 +19,12 @@
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .not-found-page {
@@ -35,7 +34,8 @@
   min-height: 100vh;
   background-color: var(--dominant-color);
   color: var(--neutral-color);
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   text-align: center;
   padding: 20px;
   overflow: hidden;
@@ -46,10 +46,10 @@
 }
 
 .status-code-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: float 6s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: float 6s ease-in-out infinite;
 }
 
 .status-code-404 {
@@ -57,26 +57,25 @@
   font-weight: 700;
   margin: 0;
   color: var(--secondary-color);
-  text-shadow: 
-    -1px -1px 0 var(--border-color, #4a4e57),  
-     1px -1px 0 var(--border-color, #4a4e57),
-    -1px  1px 0 var(--border-color, #4a4e57),
-     1px  1px 0 var(--border-color, #4a4e57);
+  text-shadow: -1px -1px 0 var(--border-color, #4a4e57),
+    1px -1px 0 var(--border-color, #4a4e57),
+    -1px 1px 0 var(--border-color, #4a4e57),
+    1px 1px 0 var(--border-color, #4a4e57);
 }
 
 .icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: clamp(6rem, 20vw, 12rem);
-    height: clamp(6rem, 20vw, 12rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(6rem, 20vw, 12rem);
+  height: clamp(6rem, 20vw, 12rem);
 }
 
 .compass-icon {
-    width: 100%;
-    height: 100%;
-    color: var(--accent-color);
-    animation: spin 30s linear infinite;
+  width: 100%;
+  height: 100%;
+  color: var(--accent-color);
+  animation: spin 30s linear infinite;
 }
 
 .error-title {
@@ -103,7 +102,7 @@
   border-radius: 50px;
   text-decoration: none;
   transition: transform 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .home-button:hover {

@@ -1,9 +1,8 @@
-/* Using the established color palette */
 :root {
   --dominant-color: #222831;
-  --secondary-color: #393E46;
+  --secondary-color: #393e46;
   --accent-color: #948979;
-  --neutral-color: #DFD0B8;
+  --neutral-color: #dfd0b8;
   --border-color: #4a4e57;
   --danger-color: #e74c3c;
   --danger-bg-color: rgba(231, 76, 60, 0.1);
@@ -13,7 +12,8 @@
   background-color: var(--dominant-color);
   color: var(--neutral-color);
   min-height: 100vh;
-  font-family: 'Oswald', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Oswald", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
 }
 
 .profile-container {
@@ -76,8 +76,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-/* --- Add these styles to your existing ProfilePage.css file --- */
-
 /* Confirmation Modal Styles */
 .modal-overlay {
   position: fixed;
@@ -116,13 +114,13 @@
 }
 
 .required-text-display {
-    background-color: var(--dominant-color);
-    padding: 10px;
-    border-radius: 8px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    color: var(--neutral-color);
-    margin-bottom: 20px !important;
+  background-color: var(--dominant-color);
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: var(--neutral-color);
+  margin-bottom: 20px !important;
 }
 
 .modal-actions {
@@ -131,7 +129,6 @@
   gap: 15px;
   margin-top: 20px;
 }
-
 
 .form-row {
   display: grid;
@@ -174,16 +171,16 @@
 
 /* Danger Zone Styling */
 .danger-zone {
-    border-color: var(--danger-color);
+  border-color: var(--danger-color);
 }
 .danger-zone h3 {
-    color: var(--danger-color);
-    border-color: rgba(231, 76, 60, 0.3);
+  color: var(--danger-color);
+  border-color: rgba(231, 76, 60, 0.3);
 }
 .danger-zone-content p {
-    margin: 0 0 20px 0;
-    color: #b0b3b8;
-    line-height: 1.6;
+  margin: 0 0 20px 0;
+  color: #b0b3b8;
+  line-height: 1.6;
 }
 
 /* Reusing button styles */
@@ -207,16 +204,16 @@
   color: #fff;
 }
 .btn-danger:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 600px) {
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-    }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
 }
